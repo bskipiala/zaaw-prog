@@ -1,1 +1,1 @@
-# zaaw-prog-lab1
+# zaaw-prog
