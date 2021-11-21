@@ -5,5 +5,3 @@ def fun(list1: list, list2: list) -> list:
     for element in listAll:
         listPower.append(element**3)
     return listPower
-
-print(fun([1,2,3], [2, 3, 4, 5]))
