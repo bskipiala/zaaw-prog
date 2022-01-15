@@ -1,0 +1,1 @@
+class Zamowienie(numer_zamowienia: int, )
