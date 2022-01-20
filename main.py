@@ -5,7 +5,6 @@ from time import time
 import collections
 
 
-
 def drawboxesonimg(classidx, confdraw, boxdraw, imgdraw):
     for classIndex, confidence, boxes in \
             zip(classidx.flatten(), confdraw.flatten(), boxdraw):
