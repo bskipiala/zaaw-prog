@@ -6,16 +6,18 @@ import collections
 
 
 def drawboxesonimg(classidx, confdraw, boxdraw, imgdraw):
+    i = 0
     for classIndex, confidence, boxes in \
             zip(classidx.flatten(), confdraw.flatten(), boxdraw):
         if classIndex == 1:
+            i = i + 1
             cv2.rectangle(imgdraw, boxes, (0, 255, 0), 3)
             cv2.putText(
                 imgdraw,
-                classLabels[classIndex - 1],
+                f"P{str(i)}",
                 (boxes[0] + 10, boxes[1] + 40),
                 cv2.FONT_HERSHEY_COMPLEX,
-                fontScale=0.8,
+                fontScale=0.7,
                 color=(128, 0, 255),
                 thickness=2
             )
@@ -23,19 +25,17 @@ def drawboxesonimg(classidx, confdraw, boxdraw, imgdraw):
 
 configFile = 'model/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 frozenModel = 'model/frozen_inference_graph.pb'
+imgPath = glob("images/*.jpg")
+fileName = 'model/labels.txt'
+with open(fileName, 'rt') as fpt:
+    classLabels = fpt.read().rstrip('\n').split('\n')
 
 model = cv2.dnn_DetectionModel(frozenModel, configFile)
 model.setInputSize(320, 320)
 model.setInputScale(1.0 / 127.5)
 model.setInputMean((127.5, 127.5, 127.5))
 model.setInputSwapRB(True)
-
 threshold = 0.57
-
-imgPath = glob("images/*.jpg")
-fileName = 'model/labels.txt'
-with open(fileName, 'rt') as fpt:
-    classLabels = fpt.read().rstrip('\n').split('\n')
 
 for img in imgPath:
     image = cv2.imread(img)
