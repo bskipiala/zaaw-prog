@@ -25,8 +25,8 @@ def drawboxesonimg(classidx, confdraw, boxdraw, imgdraw):
 
 configFile = 'model/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 frozenModel = 'model/frozen_inference_graph.pb'
-imgPath = glob("images/*.jpg")
 fileName = 'model/labels.txt'
+imgPath = glob("images/*.jpg")
 with open(fileName, 'rt') as fpt:
     classLabels = fpt.read().rstrip('\n').split('\n')
 
